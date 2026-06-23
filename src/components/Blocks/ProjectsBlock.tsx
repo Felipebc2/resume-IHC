@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 import { useScroll } from "motion/react";
-import CornerLabel from "@/components/Ui/CornerLabel";
 import SectionTitle from "@/components/Ui/SectionTitle";
 import ProjectCard from "@/components/Ui/ProjectCard";
 import VerticalProgress from "@/components/Ui/VerticalProgress";
@@ -31,8 +30,6 @@ export default function ProjectsBlock({ isDesktop }: ProjectsBlockProps) {
         isDesktop ? "z-20 -mt-[100vh]" : "reels-panel"
       }`}
     >
-      <CornerLabel label="Projetos" />
-
       {/* trilho de progresso (lateral esquerda, fixo enquanto rola) */}
       <div className="sticky top-0 hidden h-screen w-16 shrink-0 items-center justify-center md:flex">
         <VerticalProgress progress={scrollYProgress} />

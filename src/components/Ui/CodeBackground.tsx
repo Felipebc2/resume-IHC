@@ -108,14 +108,18 @@ function Line({ text }: { text: string }) {
  * com highlight por tokens e opacidade bem baixa.
  */
 export default function CodeBackground() {
+  // Cada "metade" repete o CODE 2x para ser maior que a viewport — assim o
+  // loop (y: 0 → -50%) é contínuo e seamless (sobe sem corte/gap).
+  const half = [...CODE, ...CODE];
+
   return (
-    <div className="pointer-events-none absolute right-0 top-0 z-0 h-full w-[55%] select-none overflow-hidden opacity-[0.09]">
+    <div className="pointer-events-none absolute right-0 top-0 z-0 h-full w-[58%] select-none overflow-hidden opacity-[0.09]">
       <motion.div
         animate={{ y: ["0%", "-50%"] }}
-        transition={{ duration: 35, ease: "linear", repeat: Infinity }}
-        className="whitespace-pre pl-8 font-mono text-sm uppercase leading-relaxed"
+        transition={{ duration: 45, ease: "linear", repeat: Infinity }}
+        className="whitespace-pre pl-[80px] font-mono text-base uppercase leading-loose"
       >
-        {[...CODE, ...CODE].map((line, i) => (
+        {[...half, ...half].map((line, i) => (
           <Line key={i} text={line} />
         ))}
       </motion.div>
