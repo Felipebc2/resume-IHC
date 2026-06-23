@@ -1,13 +1,23 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "motion/react";
+import type { RefObject } from "react";
 
 const R = 22;
 const CIRC = 2 * Math.PI * R;
 
-/** Anel de progresso do scroll da página inteira (canto inferior direito da HOME). */
-export default function CircularProgress() {
-  const { scrollYProgress } = useScroll();
+interface CircularProgressProps {
+  /** Container de scroll (mobile). Sem ele, usa o scroll da janela (desktop). */
+  containerRef?: RefObject<HTMLElement | null>;
+}
+
+/** Anel de progresso do scroll — fixo, acompanha a página inteira. */
+export default function CircularProgress({
+  containerRef,
+}: CircularProgressProps) {
+  const { scrollYProgress } = useScroll(
+    containerRef ? { container: containerRef } : undefined,
+  );
   const dashoffset = useTransform(scrollYProgress, [0, 1], [CIRC, 0]);
 
   return (

@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
-import CornerLabel from "@/components/Ui/CornerLabel";
 import SectionTitle from "@/components/Ui/SectionTitle";
 import ExperienceCard from "@/components/Ui/ExperienceCard";
 import ImagePlaceholder from "@/components/Ui/ImagePlaceholder";
@@ -47,7 +46,6 @@ export default function ExperienceBlock({ isDesktop }: ExperienceBlockProps) {
     return (
       <section id="experiencias" className="bg-dark">
         <div className="reels-panel relative flex h-svh flex-col justify-center px-6">
-          <CornerLabel label="Exp" />
           <SectionTitle variant="filled" className="text-5xl">
             EXPERIÊNCIAS
           </SectionTitle>
@@ -57,7 +55,6 @@ export default function ExperienceBlock({ isDesktop }: ExperienceBlockProps) {
             key={i}
             className="reels-panel relative flex h-svh flex-col justify-center gap-6 px-6"
           >
-            <CornerLabel label="Exp" />
             <ImagePlaceholder className="h-48 w-full" />
             <div className="flex flex-col gap-3 text-cream">
               <h3 className="font-montserrat text-2xl font-extrabold">
@@ -82,8 +79,6 @@ export default function ExperienceBlock({ isDesktop }: ExperienceBlockProps) {
   return (
     <section id="experiencias" ref={ref} className="relative h-[400vh] bg-dark">
       <div className="sticky top-0 h-screen overflow-hidden bg-dark">
-        <CornerLabel label="Exp" />
-
         <motion.div style={{ x }} className="relative h-full w-[300vw]">
           {/* título */}
           <div className="absolute" style={{ left: "4vw", top: "6vh" }}>

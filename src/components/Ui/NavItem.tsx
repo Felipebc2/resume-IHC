@@ -15,7 +15,7 @@ export default function NavItem({ label, href, onClick }: NavItemProps) {
     <a
       href={href}
       onClick={onClick}
-      className="group relative block overflow-hidden font-archivo text-5xl leading-[1.18] text-white md:text-8xl"
+      className="group relative block overflow-hidden font-archivo text-4xl leading-[1.18] text-white md:text-6xl"
     >
       <span className="block transition-transform duration-300 ease-in-out group-hover:-translate-y-full">
         {label}
