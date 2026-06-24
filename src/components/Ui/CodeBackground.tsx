@@ -117,7 +117,7 @@ export default function CodeBackground() {
       <motion.div
         animate={{ y: ["0%", "-50%"] }}
         transition={{ duration: 45, ease: "linear", repeat: Infinity }}
-        className="whitespace-pre pl-[80px] font-mono text-base uppercase leading-loose"
+        className="whitespace-pre pl-[80px] font-mono text-xl uppercase leading-loose"
       >
         {[...half, ...half].map((line, i) => (
           <Line key={i} text={line} />

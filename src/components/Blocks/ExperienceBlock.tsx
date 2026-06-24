@@ -11,35 +11,36 @@ interface ExperienceBlockProps {
   isDesktop: boolean;
 }
 
-// Posições (em vw/vh) de cada card dentro da esteira de 300vw.
 const CARD_POSITIONS = [
   { left: "5vw", top: "36vh", img: "18vw" },
-  { left: "100vw", top: "13vh", img: "16vw" },
-  { left: "158vw", top: "58vh", img: "12vw" },
-  { left: "216vw", top: "16vh", img: "18vw" },
+  { left: "82vw", top: "13vh", img: "16vw" },
+  { left: "90vw", top: "58vh", img: "12vw" },
+  { left: "127vw", top: "39vh", img: "18vw" },
 ];
 
-// Quadrados decorativos espalhados (collage).
 const SQUARES = [
-  { left: "72vw", top: "22vh", size: "11vw" },
-  { left: "84vw", top: "62vh", size: "9vw" },
-  { left: "150vw", top: "16vh", size: "8vw" },
-  { left: "262vw", top: "54vh", size: "10vw" },
+  { left: "50vw", top: "22vh", size: "11vw" },
+  { left: "47vw", top: "62vh", size: "9vw" },
+  { left: "67vw", top: "55vh", size: "8vw" },
+  { left: "132vw", top: "8vh", size: "10vw" },
 ];
 
-/**
- * EXPERIÊNCIAS — scroll lateral (desktop) / reels (mobile).
- * Ver geometria do hijack na doc do projeto: 400vh de altura, sticky no topo e
- * esteira de 300vw que desliza até -66.6% (segurando no fim para o overlap de
- * PROJETOS).
- */
 export default function ExperienceBlock({ isDesktop }: ExperienceBlockProps) {
   const ref = useRef<HTMLDivElement>(null);
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end end"],
   });
-  const x = useTransform(scrollYProgress, [0, 0.66, 1], ["0%", "-66.6%", "-66.6%"]);
+
+  const x = useTransform(scrollYProgress, [0, 0.66, 1], ["0%", "-33.33%", "-33.33%"]);
+
+  // 2. Medição exclusiva para a entrada visual da seção (Fade-In)
+  const { scrollYProgress: fadeInProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "start start"],
+  });
+  const opacity = useTransform(fadeInProgress, [0, 1], [0, 1]);
 
   if (!isDesktop) {
     return (
@@ -75,10 +76,14 @@ export default function ExperienceBlock({ isDesktop }: ExperienceBlockProps) {
     );
   }
 
+  // RENDER DESKTOP (Sem o vazio na margem direita)
   return (
-    <section id="experiencias" ref={ref} className="relative h-[400vh] bg-dark">
-      <div className="sticky top-0 h-screen overflow-hidden bg-dark">
-        <motion.div style={{ x }} className="relative h-full w-[300vw]">
+    <section id="experiencias" ref={ref} className="relative h-[300vh] bg-dark">
+      <motion.div 
+        style={{ opacity }} 
+        className="sticky top-0 h-screen overflow-hidden bg-dark"
+      >
+        <motion.div style={{ x }} className="relative h-full w-[220vw]">
           {/* título */}
           <div className="absolute" style={{ left: "4vw", top: "6vh" }}>
             <SectionTitle variant="filled" className="text-[7rem] leading-none">
@@ -89,7 +94,7 @@ export default function ExperienceBlock({ isDesktop }: ExperienceBlockProps) {
           {/* texto flutuante (mural) */}
           <p
             className="absolute max-w-[15vw] font-montserrat text-sm font-bold leading-snug text-cream"
-            style={{ left: "86vw", top: "20vh" }}
+            style={{ left: "62vw", top: "27vh" }}
           >
             Descrição abrangente dessas fotos no mural: Lorem ipsum dolor sit
             amet, consectetur adipiscing elit. Pellentesque placerat fringilla
@@ -116,8 +121,7 @@ export default function ExperienceBlock({ isDesktop }: ExperienceBlockProps) {
             </div>
           ))}
         </motion.div>
-
-      </div>
+      </motion.div>
     </section>
   );
 }
