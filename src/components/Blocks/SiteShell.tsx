@@ -36,6 +36,7 @@ export default function SiteShell() {
       >
         <HomeBlock isDesktop={isDesktop} />
         <ExperienceBlock isDesktop={isDesktop} />
+        <section className="h-svh max-h-[20vh]"></section>
         <ProjectsBlock isDesktop={isDesktop} />
         <FooterBlock />
       </main>
